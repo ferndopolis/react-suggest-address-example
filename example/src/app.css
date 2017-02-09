@@ -46,7 +46,6 @@ body {
           justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: green;
 }
 
 .container {
@@ -56,7 +55,6 @@ body {
           flex: 0 0 auto;
   max-width: 612px;
   max-width: 34rem;
-  background-color: pink;
 }
 
 a {
@@ -86,8 +84,6 @@ h1 {
   color: #ccc;
   margin: 2em 0;
 }
-
-
 
 .geosuggest {
   font-size: 18px;
