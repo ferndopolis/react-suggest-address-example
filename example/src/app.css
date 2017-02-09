@@ -16,6 +16,8 @@ input, select, button, textarea {
   color: inherit;
 }
 
+textarea, input, button { outline: none; }
+
 /**
  * Base
  */
@@ -85,6 +87,18 @@ h1 {
   margin: 2em 0;
 }
 
+.address-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.address-form__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 380px;
+}
+
 .geosuggest {
   font-size: 18px;
   font-size: 1rem;
@@ -93,17 +107,16 @@ h1 {
   margin: 1em auto;
   text-align: left;
 }
-.geosuggest__input {
-  width: 100%;
-  border: 2px solid transparent;
-  box-shadow: 0 0 1px #3d464d;
+
+.geosuggest__input, .address-form__input {
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+  box-shadow: none;
   padding: .5em 1em;
-  -webkit-transition: border 0.2s, box-shadow 0.2s;
-  transition: border 0.2s, box-shadow 0.2s;
+  width: 100%;
 }
-.geosuggest__input:focus {
-  border-color: #267dc0;
-  box-shadow: 0 0 0 transparent;
+.geosuggest__input:focus, .address-form__input:focus {
+  border-bottom: 1px solid green;
 }
 .geosuggest__suggests {
   position: absolute;
@@ -157,11 +170,4 @@ h1 {
 .geosuggest__item--active:hover,
 .geosuggest__item--active:focus {
   background: #ccc;
-}
-.geosuggest__input {
-  border: none;
-  border-bottom: 1px solid rgba(0,0,0,.15);
-  width: 350px;
-  box-shadow: none;
-  padding: 0;
 }

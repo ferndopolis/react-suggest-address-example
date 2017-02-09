@@ -22,76 +22,59 @@ var App = React.createClass({ // eslint-disable-line
   render: function() {
 
     return ( // eslint-disable-line
-      <div>
+      <div className="address-form">
         <Geosuggest
           initialValue={this.state.street1}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
+          placeholder="Address 1"
           onChange={this.onChange}
           onSuggestSelect={this.onSuggestSelect}
-          onSuggestNoResults={this.onSuggestNoResults}
-          location={new google.maps.LatLng(53.558572, 9.9278215)}
+          location={new google.maps.LatLng(34.0522, -118.2437)}
           radius="20"
         />
         <input
+          className="address-form__input"
           ref='street2'
+          placeholder="Address 2"
           type='text'
           autoComplete='off'
           value={this.state.street2}
-          onChange={(e, street2) => { this.setState(street2); }}
+          onChange={(e) => { this.setState({street2: e.target.value}); }}
         />
-        <input
-          ref='city'
-          type='text'
-          autoComplete='off'
-          value={this.state.city}
-          onChange={(e, city) => { this.setState(city); }}
-        />
-        <input
-          ref='region'
-          type='text'
-          autoComplete='off'
-          value={this.state.region}
-          onChange={(e, region) => { this.setState(region); }}
-        />
-        <input
-          ref='zip'
-          type='text'
-          autoComplete='off'
-          value={this.state.zip}
-          onChange={(e, zip) => { this.setState(zip); }}
-        />
+        <div className="address-form__row">
+          <input
+            className="address-form__input"
+            ref='city'
+            placeholder="City"
+            type='text'
+            autoComplete='off'
+            value={this.state.city}
+            onChange={(e) => { this.setState({city: e.target.value}); }}
+          />
+          <input
+            className="address-form__input"
+            ref='region'
+            type='text'
+            style={{width: 80}}
+            placeholder="State"
+            autoComplete='off'
+            value={this.state.region}
+            onChange={(e) => { this.setState({region: e.target.value}); }}
+          />
+          <input
+            className="address-form__input"
+            ref='zip'
+            type='text'
+            style={{width: 150}}
+            placeholder="Zipcode"
+            autoComplete='off'
+            value={this.state.zip}
+            onChange={(e) => { this.setState({zip: e.target.value}); }}
+          />
+        </div>
       </div>
     );
   },
 
-  /**
-   * When the input receives focus
-   */
-  onFocus: function() {
-    console.log('onFocus'); // eslint-disable-line
-  },
-
-  /**
-   * When the input loses focus
-   * @param {String} value The user input
-   */
-  onBlur: function(value) {
-    console.log('onBlur', value); // eslint-disable-line
-  },
-
-  /**
-   * When the input got changed
-   * @param {String} value The new value
-   */
-  onChange: function(value) {
-    console.log('input changes to :' + value); // eslint-disable-line
-  },
-
-  /**
-   * When a suggest got selected
-   * @param  {Object} suggest The suggest
-   */
   onSuggestSelect: function(suggest) {
     console.log(suggest); // eslint-disable-line
     const {gmaps: {address_components}} = suggest;
@@ -112,14 +95,6 @@ var App = React.createClass({ // eslint-disable-line
       region: administrative_area_level_1,
       zip: postal_code,
     })
-  },
-
-  /**
-   * When there are no suggest results
-   * @param {String} userInput The user input
-   */
-  onSuggestNoResults: function(userInput) {
-    console.log('onSuggestNoResults for :' + userInput); // eslint-disable-line
   }
 });
 
